@@ -2,10 +2,12 @@ package main
 
 import "log"
 
+//Verifier encapsulate verifier state and it's dependencies
 type Verifier struct {
 	deaman *Deaman
 }
 
+//StartVerifier creates an instance of verifier and run it on a goroutine
 func StartVerifier(deaman *Deaman) {
 	verifier := Verifier{deaman: deaman}
 	go verifier.run()

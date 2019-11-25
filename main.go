@@ -10,6 +10,7 @@ func main() {
 	<-make(chan bool)
 }
 
+// Deaman encapsulate all project dependencies
 type Deaman struct {
 	MinerPubKey           string
 	MinerPrivKey          string
@@ -20,6 +21,7 @@ type Deaman struct {
 	MinerBlockChan        chan *Block
 }
 
+// StartDeaman creates an instance of deaman and starts submodules
 func StartDeaman() {
 	d := &Deaman{
 		NetInTransactionChan:  make(chan *Transaction, 1024),
