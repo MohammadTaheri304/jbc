@@ -95,7 +95,7 @@ func (b *Block) SignIt(priv string) {
 	b.Sign = signeds
 }
 
-// VerifyIt verify Block sign
+// VerifyIt verifies Block sign
 func (b *Block) VerifyIt(pub string) bool {
 	hash := b.Hash()
 	publicKey := StringToPublicKey(pub)
