@@ -13,13 +13,13 @@ import (
 // To is destination account public key
 // Sign is signed transaction hash via source account private key
 type Transaction struct {
-	UUID      string
-	From      string
-	To        string
-	Value     int64
-	Tag       string
-	Timestamp int64
-	Sign      string
+	UUID      string `json:"uuid"`
+	From      string `json:"from"`
+	To        string `json:"to`
+	Value     int64  `json:"value"`
+	Tag       string `json:"tag"`
+	Timestamp int64  `json:"timestamp"`
+	Sign      string `json:"sign"`
 }
 
 //Hash compute transaction's hash
@@ -60,14 +60,14 @@ func CreateTransaction(fromPub, fromPriv, toPub string, value int64, tag string)
 
 //Block represent a block od transactions in the blockchain
 type Block struct {
-	UUID         string
-	Depth        int64
-	Timestamp    int64
-	PrevHash     string
-	Miner        string
-	Transactions []*Transaction
-	Nonce        int64
-	Sign         string
+	UUID         string         `json:"uuid"`
+	Depth        int64          `json:"depth"`
+	Timestamp    int64          `json:"timestamp"`
+	PrevHash     string         `json:"prevhash"`
+	Miner        string         `json:"miner"`
+	Transactions []*Transaction `json:"transactions"`
+	Nonce        int64          `json:"nonce"`
+	Sign         string         `json:"sign"`
 }
 
 //Hash compute block's hash

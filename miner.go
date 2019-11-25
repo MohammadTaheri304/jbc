@@ -7,11 +7,13 @@ import (
 	"strings"
 )
 
+//Miner encapsulate miner state and dependencies.
 type Miner struct {
 	deaman          *Deaman
 	randomGenerator *rand.Rand
 }
 
+// StartMiner generate a new instance of miner and run a goroutine for it.
 func StartMiner(deaman *Deaman) {
 	ri64, err := securerandom.Int64()
 	if err != nil {
@@ -26,6 +28,7 @@ func StartMiner(deaman *Deaman) {
 	go miner.run()
 }
 
+// run checks for incoming block and try to mine it.
 func (m *Miner) run() {
 	log.Printf("Miner is running ...")
 	var current *Block
@@ -41,6 +44,7 @@ func (m *Miner) run() {
 	}
 }
 
+// mine will try to mine the given block and broadcast it.
 func (m *Miner) mine(block *Block) {
 	block.Miner = m.deaman.MinerPubKey
 	powSize := powSize(block)
@@ -57,6 +61,7 @@ func (m *Miner) mine(block *Block) {
 	m.broadcastBlock(block)
 }
 
+// powSize compute the POW hardness.
 func powSize(block *Block) int {
 	matchSize := findMatchSize(block.PrevHash, block.Miner)
 	transactionFactor := len(block.Transactions) / 256
